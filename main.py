@@ -1,21 +1,40 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from pybricks.geometry import Axis
 from pybricks.hubs import InventorHub
+from pybricks.pupdevices import UltrasonicSensor
+from pybricks.parameters import Port
+from pybricks.tools import wait, StopWatch
+from math import pi, sin
 
 
-I: InventorHub = InventorHub(front_side=Axis.X, top_size=Axis.Z)
+# Initialize the sensor.
+def main():
+    I: InventorHub = InventorHub()
+    I.display.text("Hallo Buh")
+
+    # Initialize the sensor.
+    eyes = UltrasonicSensor(Port.A)
+
+    # Initialize a timer.
+    watch = StopWatch()
+
+    # We want one full light cycle to last three seconds.
+    PERIOD = 3000
+
+    while True:
+        # The phase is where we are in the unit circle now.
+        phase = watch.time() / PERIOD * 2 * pi
+
+        # Each light follows a sine wave with a mean of 50, with an amplitude of 50.
+        # We offset this sine wave by 90 degrees for each light, so that all the
+        # lights do something different.
+        brightness = [sin(phase + offset * pi / 2) * 50 + 50 for offset in range(4)]
+
+        # Set the brightness values for all lights.
+        eyes.lights.on(brightness)
+
+        # Wait some time.
+        wait(50)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
