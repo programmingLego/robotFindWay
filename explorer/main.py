@@ -2,6 +2,7 @@ from pybricks.hubs import InventorHub
 from pybricks.parameters import Port
 from pybricks.pupdevices import UltrasonicSensor, Motor
 from pybricks.tools import wait
+from micropython import umath
 
 
 # Initialize the sensor.
