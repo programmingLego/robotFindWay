@@ -9,7 +9,7 @@ dbus-next==0.2.2
 decorator==5.0.9
 mpy-cross==1.14
 prompt-toolkit==3.0.19
-pybricks @ file:///home/dch/Projects-NAS/ProgrammingLego/pybricks-api/dist/pybricks-3.1.0a1.tar.gz
+pybricks @
 pybricksdev==1.0.0a11
 pycparser==2.20
 pyserial==3.5
